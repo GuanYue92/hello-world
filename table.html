@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft Yahei"
+}
+.table{
+	margin: 120px auto;
+	width:360px;
+	height: 360px;
+	border: 1px solid #111;
+	border-collapse: collapse;
+}
+header{
+	width: 360px;
+	margin: 60px auto;
+}
+.table td{
+	width: 90px;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #bbb;
+	background-color: #ffb400;
+	
+}
+</style>
+
+</head>
+<body>
+<header>来玩玩吧~~点击格子会使该格子与其相邻格子变色 目标：黄格子全部变成白格子</header>
+<table class="table">
+	<tbody>
+	<tr>
+		<td id="td1" class="td2 td5" >C</td>
+		<td id="td2" class="td1 td3 td6">O</td>
+		<td id="td3" class="td2 td4 td7">M</td>
+		<td id="td4" class="td3 td8">E</td>
+	</tr>
+	<tr>
+		<td id="td5" class="td1 td6 td9"></td>
+		<td id="td6" class="td2 td5 td7 td10">O</td>
+		<td id="td7" class="td3 td6 td8 td11">N</td>
+		<td id="td8" class="td4 td7 td12"></td>
+	</tr>
+	<tr>
+		<td id="td9" class="td5 td10 td13">B</td>
+		<td id="td10" class="td6 td9 td11 td14">A</td>
+		<td id="td11" class="td7 td10 td12 td15">B</td>
+		<td id="td12" class="td8 td11 td16">Y</td>
+	</tr>
+	<tr>
+		<td id="td13" class="td9 td14"></td>
+		<td id="td14" class="td10 td13 td15">!</td>
+		<td id="td15" class="td11 td14 td16">!</td>
+		<td id="td16" class="td12 td15"></td>
+	</tr>
+		
+	</tbody>
+</table>
+</div>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+	var count=0;
+	$(".table").on("click","td",function() {
+		count++;
+		var cl=$(this).attr("class").split(" "),
+			len = cl.length,			
+			$td= $(".table td"),
+			num = $td.length,
+			tdcount=0;
+		if($(this).css("background-color")=="rgb(255, 180, 0)"){
+			$(this).css("background-color","#fff");
+		}else{
+			$(this).css("background-color","#ffb400");			
+		}
+		for(var i=0;i<len;i++){
+			if($("#"+cl[i]).css("background-color")=="rgb(255, 180, 0)"){
+				$("#"+cl[i]).css("background-color","#fff");
+			}else{
+				$("#"+cl[i]).css("background-color","#ffb400");
+			}
+		}	
+		$td.each(function(){
+			if($(this).css("background-color")=="rgb(255, 180, 0)"){
+				tdcount++;
+			}
+		});
+		if(tdcount==0){
+			if(count<13){
+				alert("你用了"+count+"步!牛人！");
+			}else{
+				alert("你用了"+count+"步!小笨！");
+			}			
+		}	
+	});
+</script>
+</body>
+</html>
